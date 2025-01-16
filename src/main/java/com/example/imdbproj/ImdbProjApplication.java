@@ -1,34 +1,39 @@
 package com.example.imdbproj;
 
+import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
-import java.util.Optional;
+import java.io.IOException;
 
 @SpringBootApplication
 @RestController
-public class ImdbprojApplication {
+public class ImdbProjApplication {
 
 	@Autowired
 	ImdbRepo repository;
 
+
 	public static void main(String[] args) {
-		SpringApplication.run(ImdbprojApplication.class, args);
+		SpringApplication.run(ImdbProjApplication.class, args);
 	}
 
 
 	@GetMapping("/movies")
-	public String getMovies(
-			@RequestParam(value = "id", defaultValue = "null")String id){
-		Optional<Movie> optionalMovie = repository.findById(id);
-		Movie movie1 = optionalMovie.orElse(null);
-        return movie1.getTconst();
+	public String getMovies(@RequestParam(id="id", defaultValue="World") String id ){
+		Iterable<Movie> movies = repository.findAll();
+		return movies.toString();
     }
 
+	@Bean
+	CommandLineRunner loadData(MovieService movieService) {
+		return args -> movieService.processTSV();
+	}
 
 }

@@ -29,6 +29,12 @@ public class Movie {
  public Movie(){
  }
 
+ @Override
+ public String toString() {
+  return String.format(
+          "[movieid='%s', title='%s']",
+          tconst,primaryTitle);
+ }
  public String getTconst(){
   return  tconst;
  }
@@ -53,12 +59,12 @@ public class Movie {
   this.titleType = titleType;
  }
 
- public String[] getGenres() {
-  return genres.split(",");
+ public String getGenres() {
+  return genres;
  }
 
- public void setGenres(String[] genres) {
-  this.genres = String.join(",", genres);
+ public void setGenres(String genres) {
+  this.genres = genres;
  }
 
 }
