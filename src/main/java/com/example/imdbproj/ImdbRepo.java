@@ -1,7 +1,11 @@
 package com.example.imdbproj;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.CrudRepository;
 
-public interface ImdbRepo extends JpaRepository<Movie, String> {
+import java.util.Optional;
+
+public interface ImdbRepo extends CrudRepository<Movie, String> {
+
 
 }
