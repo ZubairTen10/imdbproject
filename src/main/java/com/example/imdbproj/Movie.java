@@ -18,6 +18,7 @@ public class Movie {
 
 
  private String titleType;
+ @Column(length = 500)
  private String  primaryTitle;
  private String  originalTitle;
  private boolean  isAdult;
@@ -66,5 +67,7 @@ public class Movie {
  public void setGenres(String genres) {
   this.genres = genres;
  }
+
+
 
 }
