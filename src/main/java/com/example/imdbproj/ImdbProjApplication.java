@@ -40,10 +40,10 @@ public class ImdbProjApplication {
 
 
 	@GetMapping("/results")
-	public String getMovies(@RequestParam("tconst") String tconst, @ModelAttribute Movie movie	, Model model ) {
+	public String getMovies(@RequestParam(value = "tconst") String tconst, @ModelAttribute Movie movie	, Model model ) {
 		model.addAttribute("movie", movie);
 		Optional<Movie> movies = repository.findById(tconst);
-        Movie movie1 = movies.get();
+		model.addAttribute("movie", movies.get());
 		return "result";
     }
 
