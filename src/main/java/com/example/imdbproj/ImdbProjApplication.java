@@ -2,6 +2,8 @@ package com.example.imdbproj;
 
 import com.fasterxml.jackson.databind.ext.OptionalHandlerFactory;
 import jakarta.annotation.PostConstruct;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -25,6 +27,7 @@ public class ImdbProjApplication {
 
 	@Autowired
 	ImdbRepo repository;
+	private static final Logger logger = LoggerFactory.getLogger(ImdbProjApplication.class);
 
 
 	public static void main(String[] args) {
@@ -40,10 +43,12 @@ public class ImdbProjApplication {
 
 
 	@GetMapping("/results")
-	public String getMovies(@RequestParam(value = "tconst") String tconst, @ModelAttribute Movie movie	, Model model ) {
-		model.addAttribute("movie", movie);
-		Optional<Movie> movies = repository.findById(tconst);
-		model.addAttribute("movie", movies.get());
+	public String getMovies(@RequestParam(value = "title") String title, Model model )
+	{
+		logger.info("Searching for movies with title: {}", title);
+		List<Movie> movies = repository.findByPrimaryTitleOrOriginalTitle(title);
+		model.addAttribute("movie", movies);
+		logger.info("Movie found: {} ", movies);
 		return "result";
     }
 
