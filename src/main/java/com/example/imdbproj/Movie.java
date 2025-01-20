@@ -1,6 +1,8 @@
 package com.example.imdbproj;
 
 import jakarta.persistence.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.time.LocalDate;
 
@@ -29,6 +31,7 @@ public class Movie {
 
  public Movie(){
  }
+ private static final Logger logger = LoggerFactory.getLogger(Movie.class);
 
  @Override
  public String toString() {
@@ -50,6 +53,14 @@ public class Movie {
 
  public void setPrimaryTitle(String primaryTitle){
    this.primaryTitle = primaryTitle;
+ }
+
+ public String getOriginalTitle(){
+  return originalTitle;
+ }
+
+ public void setOriginalTitle(String originalTitle){
+  this.originalTitle = originalTitle;
  }
 
  public String getTitleType(){

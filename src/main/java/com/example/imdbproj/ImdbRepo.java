@@ -9,9 +9,9 @@ import org.springframework.data.util.Streamable;
 import java.util.List;
 import java.util.Optional;
 
-public interface ImdbRepo extends JpaRepository<Movie, String>, QueryByExampleExecutor<Movie> {
+public interface ImdbRepo extends JpaRepository<Movie, String> {
 
-   @Query("SELECT m FROM Movie m WHERE LOWER(m.primaryTitle) = :title OR LOWER(m.originalTitle) = LOWER(:title)")
+   @Query("select m FROM Movie m WHERE LOWER(m.primaryTitle) = LOWER(:title) or LOWER(m.originalTitle) = LOWER(:title)")
    List<Movie> findByPrimaryTitleOrOriginalTitle(@Param("title") String title);
 
 

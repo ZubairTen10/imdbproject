@@ -36,6 +36,7 @@ public class MovieService {
                 movie.setTconst(values[0]);
                 movie.setTitleType(values[1]);
                 movie.setPrimaryTitle(values[2]);
+                movie.setOriginalTitle(values[3]);
                 movie.setGenres(values[8]);
                 imdbRepo.save(movie);
             }
