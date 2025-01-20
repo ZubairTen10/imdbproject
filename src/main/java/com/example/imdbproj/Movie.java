@@ -33,8 +33,8 @@ public class Movie {
  @Override
  public String toString() {
   return String.format(
-          "[movieid='%s', title='%s']",
-          tconst,primaryTitle);
+          " ID = '%s' | Movie Type = '%s' | Title = '%s' | Genre = '%s' | ",
+          tconst,titleType,primaryTitle,genres);
  }
  public String getTconst(){
   return  tconst;

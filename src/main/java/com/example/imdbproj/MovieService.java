@@ -34,7 +34,9 @@ public class MovieService {
                 String[] values = line.split("\t");
                 Movie movie = new Movie();
                 movie.setTconst(values[0]);
+                movie.setTitleType(values[1]);
                 movie.setPrimaryTitle(values[2]);
+                movie.setGenres(values[8]);
                 imdbRepo.save(movie);
             }
         }
