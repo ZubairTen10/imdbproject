@@ -1,0 +1,14 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>find a movie</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<h1>Input your rating</h1>
+<form action="#" th:action="@{/ratingResults}" method="get">
+    <p>Movies with an average rating greater than: <input type="number" name="rating"/></p> <!--input type specifies the type of thing the form will submit to the searchbar as a query, in this case text, and name specifies what the value is a variable of, in this case /results?tconst="whatevervalueiinputted"-->
+    <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+</form>
+</body>
+</html>

@@ -18,6 +18,7 @@ public class MovieService {
     private static final Logger logger = LoggerFactory.getLogger(MovieService.class);
     BufferedReader reader = null;
     String line  = "";
+    int lineCount = 0;
 
     @Autowired
      ImdbRepo imdbRepo;
@@ -31,6 +32,10 @@ public class MovieService {
             String FILE_PATH = "C:\\Users\\Zubair.Syed\\Desktop\\title.basics.tsv\\";
             reader = new BufferedReader(new FileReader(FILE_PATH));
             while ((line = reader.readLine()) != null) {
+
+                if (lineCount >= 200){
+                    break;
+                }
                 String[] values = line.split("\t");
                 Movie movie = new Movie();
                 movie.setTconst(values[0]);
@@ -39,6 +44,7 @@ public class MovieService {
                 movie.setOriginalTitle(values[3]);
                 movie.setGenres(values[8]);
                 imdbRepo.save(movie);
+                lineCount++;
             }
         }
         catch(Exception e){
@@ -50,6 +56,6 @@ public class MovieService {
                 reader.close();
             }
         }
-        logger.info("Loaded the data!");
+        logger.info("Successfully loaded the first 200 lines of movie titles");
     }
 }
