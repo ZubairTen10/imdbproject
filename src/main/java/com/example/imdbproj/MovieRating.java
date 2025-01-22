@@ -33,10 +33,14 @@ public class MovieRating{
         this.numVotes = Integer.parseInt(numVotes);
     }
 
+    public double getAverageRating(){
+        return averageRating;
+    }
+
     @Override
     public String toString() {
         return String.format(
-                " ID = '%s' | average rating = '%,.2f' | numvotes = '%05d' |",
+                " MovieRatingID = '%s' | average rating = '%,.2f' | numvotes = '%05d' |",
                 tconstId,averageRating,numVotes);
     }
 

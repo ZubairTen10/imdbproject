@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.ui.Model;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 @SpringBootApplication
@@ -54,11 +55,11 @@ public class ImdbProjApplication {
 	@GetMapping("/ratingResults")
 	public String getMoviesByRating(@RequestParam(value = "rating")Double rating, Model model){
 		List<Movie> filteredMovies = imdbRepo.findByMovieRatingAverageRatingGreaterThan(rating);
+		List<MovieWithRating> moviesWithRatings = new ArrayList<>();
 		for (Movie movie: filteredMovies){
-			
+			moviesWithRatings.add(new MovieWithRating(movie.getPrimaryTitle(), movie.getMovieRating().getAverageRating()));
 		}
-		List<MovieRating> filteredMovieRatings = filteredMovies.getMovieRating.getAverageRating();
-		model.addAttribute("filteredMovies", filteredMovies);
+		model.addAttribute("filteredMoviesWithRating", moviesWithRatings);
 		return "ratingResults";
 	}
 
